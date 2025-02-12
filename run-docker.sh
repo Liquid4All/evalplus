@@ -17,6 +17,10 @@ if [ "$#" -eq 0 ]; then
     usage
 fi
 
+MODEL_NAME=""
+MODEL_URL=""
+MODEL_API_TOKEN=""
+DATASET=""
 BASE_ONLY=""
 CI_MODE="false"
 
