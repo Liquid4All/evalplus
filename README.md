@@ -1,5 +1,50 @@
 # `EvalPlus(📖) => 📚`
 
+## Run with docker
+
+Run the following script to launch the evaluation in a Docker container:
+
+```bash
+./run_evalplus.sh \
+    --model-name <MODEL_NAME> \
+    --model-url <MODEL_URL> \
+    --model-api-token <MODEL_API_TOKEN> \
+    --dataset <DATASET> [--base-only]
+```
+
+The results will be saved in the `evalplus_results/` directory.
+
+### Examples
+
+```bash
+# run against liquid labs
+./run_evalplus.sh \
+    --model-name "lfm-3b" \
+    --model-url "https://inference-1.liquid.ai" \
+    --model-api-token <liquid-api-token> \
+    --dataset humaneval
+
+# run on-prem
+./run_evalplus.sh \
+    --model-name "lfm-3b" \
+    --model-url "http://localhost:8000" \
+    --model-api-token <on-prem-api-secret> \
+    --dataset humaneval
+```
+
+### Parameters
+
+| Parameter | Required | Description |
+| ---- | ---- | ---- |
+| `--model-name` | Yes | Model name. E.g. `lfm-3b`. |
+| `--model-url` | Yes | Inference server URL. E.g. `https://inference-1.liquid.ai`. |
+| `--model-api-token` | Yes | Inference server API token. |
+| `--dataset` | Yes | `humaneval` or `mbpp`. |
+| `--base-only` | No | Run only the base version of the evaluation; by default, the plus version is executed. |
+
+<details>
+<summary>Click to read original README.</summary>
+
 <p align="center">
     <a href="https://evalplus.github.io"><img src="https://img.shields.io/badge/%F0%9F%8F%86-leaderboard-8A2BE2"></a>
     <a href="https://openreview.net/forum?id=1qvx610Cu7"><img src="https://img.shields.io/badge/EvalPlus-NeurIPS'23-a55fed.svg"></a>
@@ -323,3 +368,5 @@ To learn more about how to use EvalPlus, please refer to:
 
 - [HumanEval](https://github.com/openai/human-eval)
 - [MBPP](https://github.com/google-research/google-research/tree/master/mbpp)
+
+</details>
