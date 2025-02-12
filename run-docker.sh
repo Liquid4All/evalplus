@@ -29,7 +29,7 @@ while [ "$#" -gt 0 ]; do
             shift 2
             ;;
         --model-api-token)
-            MODEL_API_TOKEN="$3"
+            MODEL_API_TOKEN="$2"
             shift 2
             ;;
         --dataset)
