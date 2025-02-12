@@ -50,16 +50,20 @@ jobs:
 
       - name: Output result
         run: |
+          echo "# API Evaluation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
           ls -alh evalplus_results/*/*_results.json
           for json_file in evalplus_results/*/*_results.json; do
             if [ -f "$json_file" ]; then
               echo "Found result JSON file: $json_file"
               # Print the dataset name as header (first directory after evalplus_results)
               echo "## \`$(echo "$json_file" | cut -d'/' -f2)\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
 
               # Print the file content in a code block
               echo '```json' >> $GITHUB_STEP_SUMMARY
-              cat "$json_file" >> $GITHUB_STEP_SUMMARY
+              cat "$json_file" | jq >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
 
               echo -e "\n" >> $GITHUB_STEP_SUMMARY
