@@ -60,13 +60,11 @@ if [[ "$DATASET" != "humaneval" && "$DATASET" != "mbpp" ]]; then
     exit 1
 fi
 
-export OPENAI_API_KEY="$MODEL_API_TOKEN"
-
 OUTPUT_DIR=$(pwd)/evalplus_results
 
 mkdir -p "$OUTPUT_DIR"
 
-docker run --rm -v "$OUTPUT_DIR":/app ganler/evalplus:latest \
+docker run --rm -e OPENAI_API_KEY="$MODEL_API_TOKEN" -v "$OUTPUT_DIR":/app ganler/evalplus:latest \
     evalplus.evaluate $BASE_ONLY \
     --model "$MODEL_NAME" \
     --dataset "$DATASET" \
