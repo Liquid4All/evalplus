@@ -82,7 +82,7 @@ fi
 
 OUTPUT_DIR=$(pwd)
 
-mkdir -p "$OUTPUT_DIR"
+mkdir -p evalplus_results
 
 docker run --rm \
     -e OPENAI_API_KEY="$MODEL_API_TOKEN" \
