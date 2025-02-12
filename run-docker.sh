@@ -4,11 +4,11 @@ set -euo pipefail
 
 usage() {
     echo "Usage: $0 --model-name <MODEL_NAME> --model-url <MODEL_URL> --model-api-token <MODEL_API_TOKEN> --dataset <DATASET> [--base-only]"
-    echo "  --model-name       Name of the model (e.g., 'ise-uiuc/Magicoder-S-DS-6.7B')"
-    echo "  --model-url        Base URL of your vLLM server (e.g., 'http://your_vllm_server_url')"
-    echo "  --model-api-token  API token for authentication"
-    echo "  --dataset          Dataset to use ('humaneval' or 'mbpp')"
-    echo "  --base-only        (Optional) Run only the base version of the evaluation"
+    echo "  --model-name       Model name. E.g. lfm-3b."
+    echo "  --model-url        Inference server URL. E.g. 'https://inferece-1.liquid.ai'."
+    echo "  --model-api-token  API token for authentication."
+    echo "  --dataset          Dataset to use: humaneval or mbpp."
+    echo "  --base-only        (Optional) Run only the base version of the evaluation."
     exit 1
 }
 
