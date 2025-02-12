@@ -80,7 +80,7 @@ if [ "$CI_MODE" = "true" ]; then
     VOLUME_MOUNT="-v $CI_DIR:/ci"
 fi
 
-OUTPUT_DIR=$(pwd)/evalplus_results
+OUTPUT_DIR=$(pwd)
 
 mkdir -p "$OUTPUT_DIR"
 
