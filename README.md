@@ -41,6 +41,7 @@ The results will be saved in the `evalplus_results/` directory.
 | `--model-api-token` | Yes | Inference server API token. |
 | `--dataset` | Yes | `humaneval` or `mbpp`. |
 | `--base-only` | No | Run only the base version of the evaluation; by default, the plus version is executed. |
+| `--ci` | No | CI mode. Run only one test case for each test. |
 
 <details>
 <summary>Click to read original README.</summary>
