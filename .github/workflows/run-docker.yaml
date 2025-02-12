@@ -1,0 +1,67 @@
+name: Run API Evaluation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'run-docker.sh'
+      - 'evalplus/**'
+      - 'ci/**'
+      - 'Dockerfile'
+      - '.github/workflows/run-eval.yaml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'run-docker.sh'
+      - 'evalplus/**'
+      - 'ci/**'
+      - 'Dockerfile'
+      - '.github/workflows/run-eval.yaml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  run-api-eval:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run API evaluation script
+        run: |
+          ./run-docker.sh --model-name lfm-3b \
+              --model-url ${{ vars.MODEL_URL }} \
+              --model-api-token ${{ secrets.MODEL_API_KEY }} \
+              --dataset humaneval \
+              --ci
+          ./run-docker.sh --model-name lfm-3b \
+              --model-url ${{ vars.MODEL_URL }} \
+              --model-api-token ${{ secrets.MODEL_API_KEY }} \
+              --dataset mbpp \
+              --ci
+
+      - name: Output result
+        run: |
+          ls -alh evalplus_results/*/*_results.json
+          for json_file in evalplus_results/*/*_results.json; do
+            if [ -f "$json_file" ]; then
+              echo "Found result JSON file: $json_file"
+              # Print the dataset name as header (first directory after evalplus_results)
+              echo "## \`$(echo "$json_file" | cut -d'/' -f2)\`" >> $GITHUB_STEP_SUMMARY
+
+              # Print the file content in a code block
+              echo '```json' >> $GITHUB_STEP_SUMMARY
+              cat "$json_file" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+
+              echo -e "\n" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
