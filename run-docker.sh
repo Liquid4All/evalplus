@@ -74,7 +74,12 @@ VOLUME_MOUNT=""
 HUMANEVAL_OVERRIDE_PATH=""
 MBPP_OVERRIDE_PATH=""
 
+TTY_FLAG="-t"
+
 if [ "$CI_MODE" = "true" ]; then
+    # clear TTY flag under CI
+    TTY_FLAG=""
+
     CI_DIR=$(pwd)/ci
     if [ "$DATASET" = "humaneval" ]; then
         HUMANEVAL_OVERRIDE_PATH="/ci/HumanEvalPlus-CI.jsonl"
@@ -88,7 +93,7 @@ OUTPUT_DIR=$(pwd)
 
 mkdir -p evalplus_results
 
-docker run --rm -it \
+docker run --rm -i "$TTY_FLAG" \
     --network="host" \
     -e OPENAI_API_KEY="$MODEL_API_TOKEN" \
     -e HUMANEVAL_OVERRIDE_PATH="$HUMANEVAL_OVERRIDE_PATH" \
