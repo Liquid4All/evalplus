@@ -93,7 +93,7 @@ OUTPUT_DIR=$(pwd)
 
 mkdir -p evalplus_results
 
-docker run --rm -i "$TTY_FLAG" \
+docker run --rm -i $TTY_FLAG \
     --network="host" \
     -e OPENAI_API_KEY="$MODEL_API_TOKEN" \
     -e HUMANEVAL_OVERRIDE_PATH="$HUMANEVAL_OVERRIDE_PATH" \
