@@ -88,7 +88,8 @@ OUTPUT_DIR=$(pwd)
 
 mkdir -p evalplus_results
 
-docker run --rm \
+docker run --rm -it \
+    --network="host" \
     -e OPENAI_API_KEY="$MODEL_API_TOKEN" \
     -e HUMANEVAL_OVERRIDE_PATH="$HUMANEVAL_OVERRIDE_PATH" \
     -e MBPP_OVERRIDE_PATH="$MBPP_OVERRIDE_PATH" \
