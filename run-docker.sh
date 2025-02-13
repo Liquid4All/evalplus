@@ -107,3 +107,5 @@ docker run --rm -i $TTY_FLAG \
                       --backend openai \
                       --base-url "$MODEL_URL" \
                       --greedy
+
+sudo chown $(id -u):$(id -g) -R $(pwd) || true
