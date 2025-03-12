@@ -20,14 +20,14 @@ The results will be saved in the `evalplus_results/` directory.
 # run against liquid labs
 ./run_evalplus.sh \
     --model-name "lfm-3b" \
-    --model-url "https://inference-1.liquid.ai" \
+    --model-url "https://inference-1.liquid.ai/v1" \
     --model-api-token <liquid-api-token> \
     --dataset humaneval
 
 # run on-prem
 ./run_evalplus.sh \
     --model-name "lfm-3b" \
-    --model-url "http://localhost:8000" \
+    --model-url "http://localhost:8000/v1" \
     --model-api-token <on-prem-api-secret> \
     --dataset humaneval
 ```
@@ -37,7 +37,7 @@ The results will be saved in the `evalplus_results/` directory.
 | Parameter | Required | Description |
 | ---- | ---- | ---- |
 | `--model-name` | Yes | Model name. E.g. `lfm-3b`. |
-| `--model-url` | Yes | Inference server URL. E.g. `https://inference-1.liquid.ai`. |
+| `--model-url` | Yes | Inference server URL. E.g. `https://inference-1.liquid.ai/v1`. Note the `/v1` suffix depending on the provider. |
 | `--model-api-token` | Yes | Inference server API token. |
 | `--dataset` | Yes | `humaneval` or `mbpp`. |
 | `--base-only` | No | Run only the base version of the evaluation; by default, the plus version is executed. |

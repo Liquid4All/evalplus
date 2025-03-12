@@ -5,7 +5,7 @@ set -euo pipefail
 usage() {
     echo "Usage: $0 --model-name <MODEL_NAME> --model-url <MODEL_URL> --model-api-token <MODEL_API_TOKEN> --dataset <DATASET> [--base-only] [--ci]"
     echo "  --model-name       Model name. E.g. lfm-3b."
-    echo "  --model-url        Inference server URL. E.g. 'https://inferece-1.liquid.ai'."
+    echo "  --model-url        Inference server URL. E.g. 'https://inferece-1.liquid.ai/v1'. Note the '/v1' suffix depending on the provider."
     echo "  --model-api-token  API token for authentication."
     echo "  --dataset          Dataset to use: humaneval or mbpp."
     echo "  --base-only        (Optional) Run only the base version of the evaluation."
