@@ -9,7 +9,7 @@ on:
       - 'evalplus/**'
       - 'ci/**'
       - 'Dockerfile'
-      - '.github/workflows/run-eval.yaml'
+      - '.github/workflows/run-docker.yaml'
   pull_request:
     branches:
       - main
@@ -18,7 +18,7 @@ on:
       - 'evalplus/**'
       - 'ci/**'
       - 'Dockerfile'
-      - '.github/workflows/run-eval.yaml'
+      - '.github/workflows/run-docker.yaml'
   workflow_dispatch:
 
 concurrency:
