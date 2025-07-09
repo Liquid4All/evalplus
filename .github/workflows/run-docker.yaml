@@ -20,6 +20,8 @@ on:
       - 'Dockerfile'
       - '.github/workflows/run-docker.yaml'
   workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 3'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
